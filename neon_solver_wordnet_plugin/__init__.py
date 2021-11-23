@@ -29,13 +29,12 @@ from nltk.corpus import wordnet as wn
 import random
 from neon_solvers import AbstractSolver
 
-nltk.download("wordnet")
-
 
 class WordnetSolver(AbstractSolver):
     def __init__(self):
         super(WordnetSolver, self).__init__(name="Wordnet")
         self.rake = RAKETagger()
+        nltk.download("wordnet")
 
     def extract_keyword(self, query, lang="en"):
         query = query.lower()
