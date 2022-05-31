@@ -1,3 +1,0 @@
-simplematch
-git+https://github.com/NeonGeckoCom/neon_utterance_RAKE_plugin
-nltk

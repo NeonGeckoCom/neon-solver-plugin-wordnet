@@ -23,6 +23,7 @@ jobs:
           sudo apt install python3-dev swig libssl-dev
       - name: Install core repo
         run: |
+          pip install git+https://github.com/NeonGeckoCom/neon_solvers
           pip install .
       - name: Install licheck
         run: |
