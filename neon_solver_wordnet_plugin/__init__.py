@@ -22,19 +22,18 @@
 # LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE,  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+import random
+
 import nltk
 import simplematch
-from neon_utterance_RAKE_plugin import RAKETagger
 from nltk.corpus import wordnet as wn
-import random
+
 from neon_solvers import AbstractSolver
 
 
 class WordnetSolver(AbstractSolver):
     def __init__(self):
         super(WordnetSolver, self).__init__(name="Wordnet")
-        self.rake = RAKETagger()
-        nltk.download("wordnet")
 
     def extract_keyword(self, query, lang="en"):
         query = query.lower()
@@ -50,12 +49,7 @@ class WordnetSolver(AbstractSolver):
         if match:
             match = match["query"]
         else:
-            # let's try to extract the best keyword and use it as query
-            _, context = self.rake.transform([query], {"lang": lang})
-            kwords = context["keywords"]
-            if not kwords:
-                return None
-            match = kwords[0][0]
+            return None
 
         return match
 
@@ -116,6 +110,9 @@ class WordnetSolver(AbstractSolver):
 
 
 class Wordnet:
+    nltk.download("wordnet")
+    nltk.download('omw-1.4')
+
     @staticmethod
     def get_synsets(word, pos=wn.NOUN):
         synsets = wn.synsets(word, pos=pos)
@@ -232,3 +229,4 @@ class Wordnet:
                "root_hypernyms": cls.get_root_hypernyms(query, pos=pos, synset=synset),
                "definition": cls.get_definition(query, pos=pos, synset=synset)}
         return res
+
