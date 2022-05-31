@@ -20,10 +20,19 @@ with open("README.md", "r") as f:
     long_description = f.read()
 
 
+with open("./version.py", "r", encoding="utf-8") as v:
+    for line in v.readlines():
+        if line.startswith("__version__"):
+            if '"' in line:
+                version = line.split('"')[1]
+            else:
+                version = line.split("'")[1]
+
+
 PLUGIN_ENTRY_POINT = 'neon_solver_wordnet_plugin=neon_solver_wordnet_plugin:WordnetSolver'
 setup(
     name='neon_solver_wordnet_plugin',
-    version='0.0.1',
+    version=version,
     description='A question solver plugin for ovos/neon/mycroft',
     url='https://github.com/NeonGeckoCom/neon_solver_wordnet_plugin',
     author='Neongecko',
