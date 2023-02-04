@@ -33,7 +33,7 @@ from neon_solvers import AbstractSolver
 
 class WordnetSolver(AbstractSolver):
     def __init__(self):
-        super(WordnetSolver, self).__init__(name="Wordnet", priority=80)
+        super(WordnetSolver, self).__init__(name="Wordnet", priority=80, enable_cache=False, enable_tx=True)
 
     def extract_keyword(self, query, lang="en"):
         query = query.lower()
