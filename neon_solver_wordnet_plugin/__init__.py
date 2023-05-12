@@ -31,8 +31,13 @@ from ovos_plugin_manager.templates.solvers import QuestionSolver
 
 
 class WordnetSolver(QuestionSolver):
-    def __init__(self):
-        super(WordnetSolver, self).__init__(name="Wordnet", priority=80, enable_cache=False, enable_tx=True)
+    enable_tx = True
+    priority = 80
+
+    def __init__(self, config=None):
+        config = config or {}
+        config["lang"] = "en"  # only english supported
+        super(WordnetSolver, self).__init__(config)
 
     def extract_keyword(self, query, lang="en"):
         query = query.lower()
