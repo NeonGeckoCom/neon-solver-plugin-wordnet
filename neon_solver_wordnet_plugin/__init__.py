@@ -22,16 +22,15 @@
 # LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE,  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-import random
-
 import nltk
+import random
 import simplematch
 from nltk.corpus import wordnet as wn
 
-from neon_solvers import AbstractSolver
+from ovos_plugin_manager.templates.solvers import QuestionSolver
 
 
-class WordnetSolver(AbstractSolver):
+class WordnetSolver(QuestionSolver):
     def __init__(self):
         super(WordnetSolver, self).__init__(name="Wordnet", priority=80, enable_cache=False, enable_tx=True)
 
@@ -229,4 +228,3 @@ class Wordnet:
                "root_hypernyms": cls.get_root_hypernyms(query, pos=pos, synset=synset),
                "definition": cls.get_definition(query, pos=pos, synset=synset)}
         return res
-
