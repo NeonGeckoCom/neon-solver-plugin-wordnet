@@ -30,7 +30,7 @@ with open("./version.py", "r", encoding="utf-8") as v:
 
 
 PLUGIN_ENTRY_POINT = 'neon_solver_wordnet_plugin=neon_solver_wordnet_plugin:WordnetSolver'
-PERSONA_ENTRY_POINT = 'wordnet=neon_solver_wordnet_plugin:WORDNET_PERSONA'
+PERSONA_ENTRY_POINT = 'neon-wordnet=neon_solver_wordnet_plugin:WORDNET_PERSONA'
 
 
 setup(
