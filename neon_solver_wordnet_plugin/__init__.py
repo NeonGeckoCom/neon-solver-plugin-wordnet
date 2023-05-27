@@ -22,18 +22,22 @@
 # LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE,  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-import random
-
 import nltk
+import random
 import simplematch
 from nltk.corpus import wordnet as wn
 
-from neon_solvers import AbstractSolver
+from ovos_plugin_manager.templates.solvers import QuestionSolver
 
 
-class WordnetSolver(AbstractSolver):
-    def __init__(self):
-        super(WordnetSolver, self).__init__(name="Wordnet")
+class WordnetSolver(QuestionSolver):
+    enable_tx = True
+    priority = 80
+
+    def __init__(self, config=None):
+        config = config or {}
+        config["lang"] = "en"  # only english supported
+        super(WordnetSolver, self).__init__(config)
 
     def extract_keyword(self, query, lang="en"):
         query = query.lower()
@@ -230,3 +234,18 @@ class Wordnet:
                "definition": cls.get_definition(query, pos=pos, synset=synset)}
         return res
 
+WORDNET_PERSONA = {
+  "gender": "female",
+  "attitudes": {
+    "//": "this is WIP, a enum and value range will be defined later",
+    "normal": 100,
+    "funny": 0,
+    "sarcastic": 0,
+    "irritable": 0
+  },
+  "//": "these plugins are the brain of this persona",
+  "solvers": [
+    "neon_solver_wordnet_plugin",
+    "ovos-solver-failure-plugin"
+  ]
+}

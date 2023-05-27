@@ -1,2 +1,3 @@
 simplematch
 nltk
+ovos-plugin-manager>=0.0.23a13

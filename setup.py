@@ -30,6 +30,9 @@ with open("./version.py", "r", encoding="utf-8") as v:
 
 
 PLUGIN_ENTRY_POINT = 'neon_solver_wordnet_plugin=neon_solver_wordnet_plugin:WordnetSolver'
+PERSONA_ENTRY_POINT = 'neon-wordnet=neon_solver_wordnet_plugin:WORDNET_PERSONA'
+
+
 setup(
     name='neon_solver_wordnet_plugin',
     version=version,
@@ -41,7 +44,8 @@ setup(
     packages=['neon_solver_wordnet_plugin'],
     zip_safe=True,
     keywords='mycroft plugin utterance fallback query',
-    entry_points={'neon.plugin.solver': PLUGIN_ENTRY_POINT},
+    entry_points={'neon.plugin.solver': PLUGIN_ENTRY_POINT,
+                  "opm.plugin.persona": PERSONA_ENTRY_POINT},
     install_requires=required("requirements/requirements.txt"),
     long_description=long_description,
     long_description_content_type='text/markdown'
