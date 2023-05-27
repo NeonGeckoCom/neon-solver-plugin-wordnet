@@ -233,3 +233,19 @@ class Wordnet:
                "root_hypernyms": cls.get_root_hypernyms(query, pos=pos, synset=synset),
                "definition": cls.get_definition(query, pos=pos, synset=synset)}
         return res
+
+WORDNET_PERSONA = {
+  "gender": "female",
+  "attitudes": {
+    "//": "this is WIP, a enum and value range will be defined later",
+    "normal": 100,
+    "funny": 0,
+    "sarcastic": 0,
+    "irritable": 0
+  },
+  "//": "these plugins are the brain of this persona",
+  "solvers": [
+    "neon_solver_wordnet_plugin",
+    "ovos-solver-failure-plugin"
+  ]
+}
